@@ -179,7 +179,7 @@ def new_dicts():
 
 
 
-class Fine:
+class Fine100:
   def __init__(self, fine_labels):
     self.fine_labels = fine_labels
     self.fine_id = dict()
@@ -195,7 +195,7 @@ class Fine:
     return self.fine_id[label]
 
 
-class Coarse:
+class Coarse100:
   def __init__(self,mapping_coarse_fine, fine_labels):
       self.fine_labels = fine_labels
       # fine label name -> id of fine label
@@ -246,10 +246,11 @@ if __name__ == "__main__":
     #pp.pprint(mapping_coarse_fine)
     #new_dicts()
     fine_id = 2. #baby
-    fine = Fine(fine_labels)
+    fine = Fine100(fine_labels)
     print('expect:baby, is:{}'.format(fine.id_to_label(fine_id)))
 
-    coarse = Coarse(mapping_coarse_fine, fine_labels)
+    coarse = Coarse100(mapping_coarse_fine, fine_labels)
     print('expect:people, is:{}'.format(coarse.fine_id_to_coarse_label(fine_id)))
     fine_id=1 # fish
     print('expect:fish, is:{}'.format(coarse.coarse_id_to_coarse_label(fine_id)))
+
