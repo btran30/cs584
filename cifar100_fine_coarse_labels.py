@@ -241,11 +241,21 @@ class Coarse100:
     coarse_id = self.fine_id_coarse_id[id]
     return self.id_coarse[coarse_id]
 
+  def fine_labels_sortby_coarse(self):
+    fine_labels_by_coarse = list()
+    for id, (coarse, fines) in enumerate(self.coarse_id_fine_id.items()):
+        for fine in fines:
+            label = self.id_fine[fine] 
+            fine_labels_by_coarse.append(label)
+       
+    return fine_labels_by_coarse
+
 if __name__ == "__main__":
     #print_fine_labels()
     #pp.pprint(mapping_coarse_fine)
     #new_dicts()
-    fine_id = 2. #baby
+    
+    fine_id = 2  #baby
     fine = Fine100(fine_labels)
     print('expect: baby, is:{}'.format(fine.id_to_label(fine_id)))
 
@@ -253,4 +263,5 @@ if __name__ == "__main__":
     print('expect:people, is:{}'.format(coarse.fine_id_to_coarse_label(fine_id)))
     fine_id=1 # fish
     print('expect:fish, is:{}'.format(coarse.coarse_id_to_coarse_label(fine_id)))
-
+    
+    labels = coarse.fine_labels_sortby_coarse()
